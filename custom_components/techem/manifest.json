@@ -1,0 +1,10 @@
+{
+  "domain": "techem",
+  "name": "Techem",
+  "codeowners": ["@NewFolk"],
+  "config_flow": true,
+  "documentation": "https://github.com/NewFolk/HA-Techem_at",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/NewFolk/HA-Techem_at/issues",
+  "version": "0.1.0"
+}

@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Подключение Techem",
+        "description": "Введите логин, пароль портала Techem и unit ID.",
+        "data": {
+          "username": "Логин",
+          "password": "Пароль",
+          "unit_id": "Unit ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Повторная авторизация Techem",
+        "description": "Обновите учетные данные для этой записи Techem.",
+        "data": {
+          "username": "Логин",
+          "password": "Пароль"
+        }
+      },
+      "reconfigure": {
+        "title": "Перенастройка Techem",
+        "description": "Обновите учетные данные или переключите запись на другой Techem unit.",
+        "data": {
+          "username": "Логин",
+          "password": "Пароль",
+          "unit_id": "Unit ID"
+        }
+      }
+    },
+    "error": {
+      "already_configured": "Этот unit Techem уже настроен.",
+      "cannot_connect": "Не удалось подключиться к порталу Techem.",
+      "invalid_auth": "Неверные учетные данные Techem.",
+      "unknown": "Неожиданная ошибка. Подробности в логах."
+    },
+    "abort": {
+      "already_configured": "Этот unit Techem уже настроен.",
+      "entry_not_found": "Запись Techem не найдена.",
+      "reauth_successful": "Учетные данные Techem обновлены.",
+      "reconfigure_successful": "Настройки Techem обновлены."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Параметры Techem",
+        "description": "Настройте, как часто Home Assistant опрашивает портал Techem.",
+        "data": {
+          "update_interval_hours": "Интервал обновления в часах"
+        }
+      }
+    }
+  }
+}

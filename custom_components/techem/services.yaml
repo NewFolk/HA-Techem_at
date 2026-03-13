@@ -1,0 +1,9 @@
+refresh:
+  name: Refresh Techem data
+  description: Refresh one Techem config entry or all loaded Techem entries.
+  fields:
+    entry_id:
+      name: Config entry ID
+      description: Optional Techem config entry to refresh.
+      selector:
+        text:

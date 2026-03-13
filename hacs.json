@@ -1,0 +1,6 @@
+{
+  "name": "Techem",
+  "domains": ["techem"],
+  "homeassistant": "2026.3.0",
+  "render_readme": true
+}

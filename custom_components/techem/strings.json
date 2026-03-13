@@ -1,0 +1,55 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect Techem",
+        "description": "Enter your Techem portal credentials and unit ID.",
+        "data": {
+          "username": "Username",
+          "password": "Password",
+          "unit_id": "Unit ID"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reconnect Techem",
+        "description": "Update the Techem portal credentials for this entry.",
+        "data": {
+          "username": "Username",
+          "password": "Password"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Techem",
+        "description": "Update credentials or move this entry to another Techem unit.",
+        "data": {
+          "username": "Username",
+          "password": "Password",
+          "unit_id": "Unit ID"
+        }
+      }
+    },
+    "error": {
+      "already_configured": "This Techem unit is already configured.",
+      "cannot_connect": "Failed to connect to the Techem portal.",
+      "invalid_auth": "Invalid Techem credentials.",
+      "unknown": "Unexpected error. Check the logs for details."
+    },
+    "abort": {
+      "already_configured": "This Techem unit is already configured.",
+      "entry_not_found": "The selected Techem entry could not be found.",
+      "reauth_successful": "Techem credentials updated successfully.",
+      "reconfigure_successful": "Techem configuration updated successfully."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Techem options",
+        "description": "Tune how often Home Assistant polls the Techem portal.",
+        "data": {
+          "update_interval_hours": "Update interval in hours"
+        }
+      }
+    }
+  }
+}

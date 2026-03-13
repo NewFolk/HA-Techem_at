@@ -1,0 +1,154 @@
+[
+    {
+        "location": "modules.rooms.toilet",
+        "type": "WWZ-AP",
+        "factor": "1",
+        "percentage": "100",
+        "messgeraetenummer2": "10000000001TST01",
+        "geraetenummer1": "2001",
+        "lastReading": {
+            "realestateId": "999900001",
+            "messgeraetenummer2": "10000000001TST01",
+            "readingDate": 1730000000000,
+            "reading": 44.78,
+            "readingManner": "AZ",
+            "readingType": "A",
+            "instanceCode": null,
+            "order": null,
+            "geraetenummer1": "2001",
+            "reset": false
+        },
+        "listOfMeters": [
+            {
+                "realestateId": "999900001",
+                "unitIdByRealestate": "23456",
+                "messgeraetenummer1": "1000101",
+                "messgeraetenummer2": "10000000001TST01",
+                "measurementUnit": "m³",
+                "aktiv": true,
+                "type": "WWZ-AP",
+                "room": "modules.rooms.toilet",
+                "installationDate": 1704067200000,
+                "uninstallationDate": null,
+                "calibrationYear": 2025,
+                "deviceCategory": "WARM_WATER_METER",
+                "deviceSubCategory": "WARM_WATER_METER",
+                "geraetenummer1": "2001"
+            }
+        ]
+    },
+    {
+        "location": "modules.rooms.kitchen",
+        "type": "WWZ-AP",
+        "factor": "1",
+        "percentage": "100",
+        "messgeraetenummer2": "10000000002TST01",
+        "geraetenummer1": "2002",
+        "lastReading": {
+            "realestateId": "999900001",
+            "messgeraetenummer2": "10000000002TST01",
+            "readingDate": 1725000000000,
+            "reading": 11.85,
+            "readingManner": "AZ",
+            "readingType": "A",
+            "instanceCode": null,
+            "order": null,
+            "geraetenummer1": "2002",
+            "reset": false
+        },
+        "listOfMeters": [
+            {
+                "realestateId": "999900001",
+                "unitIdByRealestate": "23456",
+                "messgeraetenummer1": "1000201",
+                "messgeraetenummer2": "10000000002TST01",
+                "measurementUnit": "m³",
+                "aktiv": false,
+                "type": "WWZ-AP",
+                "room": "modules.rooms.kitchen",
+                "installationDate": 1672531200000,
+                "uninstallationDate": 1725000000000,
+                "calibrationYear": 2022,
+                "deviceCategory": "WARM_WATER_METER",
+                "deviceSubCategory": "WARM_WATER_METER",
+                "geraetenummer1": "2002"
+            }
+        ]
+    },
+    {
+        "location": "modules.rooms.kitchen",
+        "type": "KWZ-AP",
+        "factor": "1",
+        "percentage": "100",
+        "messgeraetenummer2": "10000000003TST01",
+        "geraetenummer1": "2003",
+        "lastReading": {
+            "realestateId": "999900001",
+            "messgeraetenummer2": "10000000003TST01",
+            "readingDate": 1730000000000,
+            "reading": 21.5,
+            "readingManner": "AZ",
+            "readingType": "A",
+            "instanceCode": null,
+            "order": null,
+            "geraetenummer1": "2003",
+            "reset": false
+        },
+        "listOfMeters": [
+            {
+                "realestateId": "999900001",
+                "unitIdByRealestate": "23456",
+                "messgeraetenummer1": "1000301",
+                "messgeraetenummer2": "10000000003TST01",
+                "measurementUnit": "m³",
+                "aktiv": true,
+                "type": "KWZ-AP",
+                "room": "modules.rooms.kitchen",
+                "installationDate": 1704067200000,
+                "uninstallationDate": null,
+                "calibrationYear": 2025,
+                "deviceCategory": "COLD_WATER_METER",
+                "deviceSubCategory": "COLD_WATER_METER",
+                "geraetenummer1": "2003"
+            }
+        ]
+    },
+    {
+        "location": "modules.rooms.livingRoom",
+        "type": "V4858",
+        "factor": "1",
+        "percentage": "100",
+        "messgeraetenummer2": "10000000004TST01",
+        "geraetenummer1": "2004",
+        "lastReading": {
+            "realestateId": "999900001",
+            "messgeraetenummer2": "10000000004TST01",
+            "readingDate": 1730000000000,
+            "reading": 12.0,
+            "readingManner": "AZ",
+            "readingType": "A",
+            "instanceCode": null,
+            "order": null,
+            "geraetenummer1": "2004",
+            "reset": false
+        },
+        "listOfMeters": [
+            {
+                "realestateId": "999900001",
+                "unitIdByRealestate": "23456",
+                "messgeraetenummer1": "1000401",
+                "messgeraetenummer2": "10000000004TST01",
+                "measurementUnit": "Stri",
+                "aktiv": true,
+                "type": "V4858",
+                "room": "modules.rooms.livingRoom",
+                "installationDate": 1704067200000,
+                "uninstallationDate": null,
+                "calibrationYear": 2025,
+                "deviceCategory": "HEAT_COST_ALLOCATOR",
+                "deviceSubCategory": "HEAT_COST_ALLOCATOR",
+                "geraetenummer1": "2004"
+            }
+        ]
+    }
+]
