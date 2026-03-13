@@ -2,5 +2,8 @@
 .ruff_cache/
 __pycache__/
 *.pyc
+.venv/
+AGENTS.md
 PROJECT_PLAN.md
 DEVELOPMENT_NOTES.md
+tests_local/

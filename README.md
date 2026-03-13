@@ -47,13 +47,49 @@ Recommended local wiring:
 - GitHub repository: `https://github.com/NewFolk/HA-Techem_at`
 - `manifest.json` points users to that repository for documentation and issues.
 - `custom_components/techem/brand/icon.png` and `custom_components/techem/brand/logo.png` are useful as repository assets and local branding files.
-- The integration icon in Home Assistant is not currently picked up from those local files in your setup, because HACS resolves integration icons through `brands.home-assistant.io`.
+- The integration icon is now confirmed to work in Home Assistant from the local `brand/` directory during beta.
+- HACS may still use a separate icon path, so broader branding work can wait until after the local beta phase.
 
 ## Development
 
 ```bash
 cd /config/repos/ha-techem
+python3 -m venv .venv
+. .venv/bin/activate
 python3 -m pip install -r requirements_test.txt
-pytest
+pytest tests
 ruff check custom_components tests
 ```
+
+## Local private tests
+
+For private live regression tests against a real Techem account, use the ignored local folder:
+
+- `tests_local/`
+
+This folder is intentionally excluded from git so you can keep:
+
+- real credentials in environment variables
+- real `unit_id` values
+- expected private meter IDs
+- local beta-only regression checks
+
+Recommended command:
+
+```bash
+cd /config/repos/ha-techem
+. .venv/bin/activate
+pytest tests
+python3 tests_local/run_live_smoke.py
+```
+
+Required environment variables for the provided live smoke test:
+
+- `TECHEM_LIVE_USERNAME`
+- `TECHEM_LIVE_PASSWORD`
+- `TECHEM_LIVE_UNIT_ID`
+
+Optional private assertions:
+
+- `tests_local/fixtures/expected_meter_ids.txt`
+- `tests_local/fixtures/expected_meter_count.txt`

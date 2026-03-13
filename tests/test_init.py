@@ -49,6 +49,13 @@ RAW_PAYLOAD = [
 ]
 
 
+class _FakeClientSession:
+    """Minimal aiohttp client session stub for setup tests."""
+
+    async def close(self) -> None:
+        """Match aiohttp ClientSession.close()."""
+
+
 async def test_setup_entry_registers_refresh_service(hass) -> None:
     snapshot = parse_techem_snapshot(USER_INPUT['unit_id'], RAW_PAYLOAD)
     entry = MockConfigEntry(
@@ -60,10 +67,16 @@ async def test_setup_entry_registers_refresh_service(hass) -> None:
     )
     entry.add_to_hass(hass)
 
-    with patch(
-        'custom_components.techem.api.TechemClient.async_fetch_snapshot',
-        AsyncMock(return_value=snapshot),
-    ) as fetch_snapshot:
+    with (
+        patch(
+            'custom_components.techem.aiohttp.ClientSession',
+            return_value=_FakeClientSession(),
+        ),
+        patch(
+            'custom_components.techem.api.TechemClient.async_fetch_snapshot',
+            AsyncMock(return_value=snapshot),
+        ) as fetch_snapshot,
+    ):
         assert await hass.config_entries.async_setup(entry.entry_id)
         await hass.async_block_till_done()
 
@@ -73,3 +86,4 @@ async def test_setup_entry_registers_refresh_service(hass) -> None:
         assert fetch_snapshot.await_count == 2
 
         await hass.config_entries.async_unload(entry.entry_id)
+        await hass.async_block_till_done()
