@@ -4,92 +4,58 @@
   <img src="custom_components/techem/brand/logo.png" alt="Techem" width="420">
 </p>
 
-A native Home Assistant custom integration for Techem meter readings fetched from the Techem customer portal at `https://kundenportal.techem.at`.
+A Home Assistant custom integration for reading Techem meter data from the
+Austrian customer portal at `https://kundenportal.techem.at`.
 
-Repository: `https://github.com/NewFolk/HA-Techem_at`
+## Why use it
 
-## What this repository contains
+- Native Home Assistant integration with UI setup
+- Automatic updates through Home Assistant
+- One sensor per active Techem meter
+- Built for HACS and ongoing community development
 
-- UI-based config flow for `username`, `password`, and `unit_id`
-- `DataUpdateCoordinator`-driven polling with a default 24 hour interval
-- `sensor` entities for every active Techem meter
-- optional `techem.refresh` service for manual refreshes and debugging
-- diagnostics, reauth, reconfigure, tests, and HACS metadata
-- local brand assets in `custom_components/techem/brand/`
+## Requirements
 
-## Data source
+- Home Assistant `2026.3.0` or newer
+- A Techem account for `https://kundenportal.techem.at`
+- Your portal `username`, `password`, and `unit_id`
 
-This integration currently reads data from:
+## Install
 
-- `https://kundenportal.techem.at`
+### HACS
 
-## Local beta workflow in this HA config repository
+1. Open HACS.
+2. Add `https://github.com/NewFolk/HA-Techem_at` as a custom repository.
+3. Select category `Integration`.
+4. Install `Techem`.
+5. Restart Home Assistant.
 
-This project currently lives as a local standalone repository at [repos/ha-techem](/root/homeassistant/repos/ha-techem) while it is being developed and validated inside this Home Assistant environment.
+### Manual
 
-Recommended local wiring:
+1. Copy `custom_components/techem` into your Home Assistant `custom_components`
+   directory.
+2. Restart Home Assistant.
 
-1. Keep the source of truth in `repos/ha-techem`.
-2. Expose the live integration through the symlink [custom_components/techem](/root/homeassistant/custom_components/techem).
-3. Make that symlink relative, for example `../repos/ha-techem/custom_components/techem`, so it resolves both on the host and inside the Home Assistant container as `/config/...`.
-4. Do not point the symlink at a host-only absolute path such as `/root/homeassistant/...`, because the container cannot see that path and the integration will silently disappear from `Add Integration`.
-5. Edit code inside `repos/ha-techem`, reload Home Assistant, and test on the live system.
-6. When ready, publish `repos/ha-techem` to its own GitHub repository.
+## Set up
 
-## Runtime behavior
+1. Open `Settings -> Devices & Services`.
+2. Select `Add Integration`.
+3. Search for `Techem`.
+4. Enter your `username`, `password`, and `unit_id`.
 
-- The new integration updates itself on its own schedule through Home Assistant.
-- `techem.refresh` is optional and exists only for manual beta checks or debugging.
-- The legacy `pyscript` importer and its automation can stay untouched while the new integration is being validated.
+The integration will create sensors automatically and refresh them on its own
+schedule.
 
-## Publishing notes
+## Documentation
 
-- GitHub repository: `https://github.com/NewFolk/HA-Techem_at`
-- `manifest.json` points users to that repository for documentation and issues.
-- `custom_components/techem/brand/icon.png` and `custom_components/techem/brand/logo.png` are useful as repository assets and local branding files.
-- The integration icon is now confirmed to work in Home Assistant from the local `brand/` directory during beta.
-- HACS may still use a separate icon path, so broader branding work can wait until after the local beta phase.
+| Document | Purpose |
+| --- | --- |
+| [Technical documentation](docs/TECHNICAL.md) | Architecture, services, development, testing, and release workflow |
+| [Changelog](CHANGELOG.md) | Version history starting with `0.1.0` |
 
-## Development
+## Notes
 
-```bash
-cd /config/repos/ha-techem
-python3 -m venv .venv
-. .venv/bin/activate
-python3 -m pip install -r requirements_test.txt
-pytest tests
-ruff check custom_components tests
-```
-
-## Local private tests
-
-For private live regression tests against a real Techem account, use the ignored local folder:
-
-- `tests_local/`
-
-This folder is intentionally excluded from git so you can keep:
-
-- real credentials in environment variables
-- real `unit_id` values
-- expected private meter IDs
-- local beta-only regression checks
-
-Recommended command:
-
-```bash
-cd /config/repos/ha-techem
-. .venv/bin/activate
-pytest tests
-python3 tests_local/run_live_smoke.py
-```
-
-Required environment variables for the provided live smoke test:
-
-- `TECHEM_LIVE_USERNAME`
-- `TECHEM_LIVE_PASSWORD`
-- `TECHEM_LIVE_UNIT_ID`
-
-Optional private assertions:
-
-- `tests_local/fixtures/expected_meter_ids.txt`
-- `tests_local/fixtures/expected_meter_count.txt`
+- This project currently targets the Austrian Techem portal:
+  `https://kundenportal.techem.at`
+- `techem.refresh` is available as an optional manual refresh service
+- This is an independent community project and is not an official Techem product
