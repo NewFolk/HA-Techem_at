@@ -71,6 +71,8 @@ Rules:
   - `custom_components/techem/manifest.json`
 - Record user-visible changes in:
   - `CHANGELOG.md`
+- Publish tagged versions as:
+  - GitHub Releases from tags like `v0.1.0`
 
 Suggested versioning style:
 
@@ -86,4 +88,11 @@ Suggested versioning style:
    - `pytest tests`
    - `python3 tests_local/run_live_smoke.py`
 4. Commit
-5. Push
+5. Push `main`
+6. Create and push a matching git tag:
+   - `git tag vX.Y.Z`
+   - `git push origin vX.Y.Z`
+7. GitHub Actions will:
+   - validate that the tag matches `manifest.json`
+   - run `ruff` and `pytest`
+   - create the GitHub Release using the matching `CHANGELOG.md` section

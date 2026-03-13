@@ -1,0 +1,83 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip && python -m pip install -r requirements_test.txt
+      - name: Ruff
+        run: ruff check custom_components tests
+      - name: Pytest
+        run: pytest
+      - name: Validate tag matches manifest version
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import pathlib
+          import sys
+
+          manifest_path = pathlib.Path("custom_components/techem/manifest.json")
+          manifest = json.loads(manifest_path.read_text())
+          version = manifest["version"]
+          tag = os.environ["GITHUB_REF_NAME"]
+          expected_tag = f"v{version}"
+
+          if tag != expected_tag:
+              print(
+                  f"Tag {tag!r} does not match manifest version {version!r}",
+                  file=sys.stderr,
+              )
+              sys.exit(1)
+          PY
+      - name: Extract release notes from changelog
+        run: |
+          python - <<'PY'
+          import os
+          import pathlib
+          import re
+          import sys
+
+          version = os.environ["GITHUB_REF_NAME"].removeprefix("v")
+          changelog = pathlib.Path("CHANGELOG.md").read_text().splitlines()
+          header_pattern = re.compile(rf"^## \[{re.escape(version)}\] - ")
+
+          body: list[str] = []
+          capture = False
+
+          for line in changelog:
+              if header_pattern.match(line):
+                  capture = True
+                  continue
+              if capture and line.startswith("## ["):
+                  break
+              if capture:
+                  body.append(line)
+
+          notes = "\n".join(body).strip()
+          if not notes:
+              print(
+                  f"Could not find release notes for version {version!r} in CHANGELOG.md",
+                  file=sys.stderr,
+              )
+              sys.exit(1)
+
+          pathlib.Path("release_notes.md").write_text(notes + "\n")
+          PY
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: release_notes.md
+          name: ${{ github.ref_name }}

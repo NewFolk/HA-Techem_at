@@ -52,6 +52,7 @@ schedule.
 | --- | --- |
 | [Technical documentation](docs/TECHNICAL.md) | Architecture, services, development, testing, and release workflow |
 | [Changelog](CHANGELOG.md) | Version history starting with `0.1.0` |
+| [GitHub Releases](https://github.com/NewFolk/HA-Techem_at/releases) | Published versions for installation and change tracking |
 
 ## Notes
 
