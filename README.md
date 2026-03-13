@@ -1,6 +1,10 @@
 # Techem for Home Assistant
 
-A native Home Assistant custom integration for Techem meter readings.
+<p align="center">
+  <img src="custom_components/techem/brand/logo.png" alt="Techem" width="420">
+</p>
+
+A native Home Assistant custom integration for Techem meter readings fetched from the Techem customer portal at `https://kundenportal.techem.at`.
 
 Repository: `https://github.com/NewFolk/HA-Techem_at`
 
@@ -12,6 +16,12 @@ Repository: `https://github.com/NewFolk/HA-Techem_at`
 - optional `techem.refresh` service for manual refreshes and debugging
 - diagnostics, reauth, reconfigure, tests, and HACS metadata
 - local brand assets in `custom_components/techem/brand/`
+
+## Data source
+
+This integration currently reads data from:
+
+- `https://kundenportal.techem.at`
 
 ## Local beta workflow in this HA config repository
 
@@ -36,7 +46,8 @@ Recommended local wiring:
 
 - GitHub repository: `https://github.com/NewFolk/HA-Techem_at`
 - `manifest.json` points users to that repository for documentation and issues.
-- Home Assistant and HACS can use `custom_components/techem/brand/icon.png` and `custom_components/techem/brand/logo.png` as local brand assets.
+- `custom_components/techem/brand/icon.png` and `custom_components/techem/brand/logo.png` are useful as repository assets and local branding files.
+- The integration icon in Home Assistant is not currently picked up from those local files in your setup, because HACS resolves integration icons through `brands.home-assistant.io`.
 
 ## Development
 
